@@ -36,7 +36,15 @@ const Feed = () => {
     setFilteredPosts(filtered);
     }
 
-
+    const handleTagClick = (tag) => {
+        // Filter posts based on clicked tag
+        const filtered = posts.filter((post) => post.tag.includes(tag));
+        setFilteredPosts(filtered);
+    
+        // Set the clicked tag as the search text
+        setSearchText(tag);
+      };
+    
 
     useEffect(() => {
         const fetchPosts = async () => {
@@ -70,9 +78,8 @@ const Feed = () => {
 
         <PromptCardList
         data={searchText ? filteredPosts : posts}
-        handleTagClick={() => {}}
+        handleTagClick={handleTagClick}
         />
-
 
         </section>
      );
